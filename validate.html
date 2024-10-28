@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Job Application Form</title>
+    <style>
+         body {
+            font-family: Arial, sans-serif;
+        }
+        .error {
+            color: red;
+        }
+        h1{
+            text-align: center;
+        }
+        form {
+            width: 50%;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+        }
+        label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        .radio-group {
+    display: flex;
+    align-items: center;
+}
+
+.radio-group label {
+    margin-right: 10px;
+}
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+        }
+    
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+        
+        }
+        .submit-button{
+    text-align: center;
+    margin-top: 20px; 
+}
+    </style>
+</head>
+<body>
+    <h1>Job Application Form</h1>
+    <form id="myForm" onsubmit="return validateForm()">
+        <label for="name">Name:</label>
+        <input type="text" id="name" name="name" required>
+        <span id="nameError" class="error"></span>
+
+        <label>Education:</label>
+        <div class="radio-group">
+            <input type="radio" id="ssc" name="education" value="SSC">
+            <label for="ssc">SSC</label>
+            <input type="radio" id="inter" name="education" value="Inter">
+            <label for="inter">Inter</label>
+            <input type="radio" id="degree" name="education" value="Degree">
+            <label for="degree">Degree</label>
+        <span id="educationError" class="error"></span>
+    </div>
+        <label>Gender:</label>
+        <div class="radio-group">
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label>
+        <span id="genderError" class="error"></span>
+        </div>
+        <label for="position">Apply for:</label>
+        <select id="position" name="position" required>
+            <option value="">Select Position</option>
+            <option value="Analyst">Analyst</option>
+            <option value="Developer">Developer</option>
+            <option value="Administrator">Administrator</option>
+            <option value="Data Scientist">Data Scientist</option>
+        </select>
+        <span id="positionError" class="error"></span>
+       
+    <div class="submit-button">
+        <button type="submit">Submit</button>
+    </div>
+    </form>
+
+    <script>
+        function validateForm() {
+            let isValid = true;
+
+            // Name validation
+            const name = document.getElementById("name").value;
+            if (name === "") {
+                document.getElementById("nameError").textContent = "Please enter your name.";
+                isValid = false;
+            } else {
+                document.getElementById("nameError").textContent = "";
+            }
+
+            // Education validation
+            const education = document.querySelector('input[name="education"]:checked');
+            if (!education) {
+                document.getElementById("educationError").textContent = "Please select your education.";
+                isValid = false;
+            } else {
+                document.getElementById("educationError").textContent = "";
+            }
+
+            // Gender validation
+            const gender = document.querySelector('input[name="gender"]:checked');
+            if (!gender) {
+                document.getElementById("genderError").textContent = "Please select your gender.";
+                isValid = false;
+            } else {
+                document.getElementById("genderError").textContent = "";
+            }
+
+            // Position validation
+            const position = document.getElementById("position").value;
+            if (position === "") {
+                document.getElementById("positionError").textContent = "Please select a position.";
+                isValid = false;
+            } else {
+                document.getElementById("positionError").textContent = "";
+            }
+
+            return isValid;
+        }
+    </script>
+</body>
+</html>
